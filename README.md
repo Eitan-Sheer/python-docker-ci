@@ -1,6 +1,6 @@
 # Python FastAPI - Docker CI/CD Pipeline
 
-![CI/CD Status][![CI/CD Pipeline](https://github.com/Eitan-Sheer/python-docker-ci/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/Eitan-Sheer/python-docker-ci/actions/workflows/ci.yml)
+![CI/CD Status][(https://github.com/Eitan-Sheer/python-docker-ci/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/Eitan-Sheer/python-docker-ci/actions/workflows/ci.yml)
 
 This repository demonstrates a complete, automated DevOps lifecycle for a modern Python web application. It transitions from source code to a fully tested, containerized application with verified runtime health.
 
