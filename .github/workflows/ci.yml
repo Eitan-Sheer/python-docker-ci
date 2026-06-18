@@ -2,9 +2,9 @@ name: CI/CD Pipeline
 
 on:
   push:
-    branches: [ "main", "master" ]
+    branches: [ "main" ]
   pull_request:
-    branches: [ "main", "master" ]
+    branches: [ "main" ]
 
 jobs:
   test:
@@ -25,6 +25,7 @@ jobs:
 
       - name: Run tests
         run: pytest
+
   build:
     needs: test
     runs-on: ubuntu-latest
@@ -34,3 +35,14 @@ jobs:
 
       - name: Build Docker image
         run: docker build -t python-docker-ci .
+
+      - name: Run Smoke Test
+        run: |
+          # 1. Run the container in the background (-d) and map the port
+          docker run -d -p 8000:8000 --name smoke-test-container python-docker-ci
+          
+          # 2. Wait a few seconds to ensure the Uvicorn server has fully started
+          sleep 3
+          
+          # 3. Hit the health endpoint. The --fail flag ensures that if the server returns a 4xx or 5xx error, the curl command fails, thus failing the entire pipeline.
+          curl --fail http://localhost:8000/health
